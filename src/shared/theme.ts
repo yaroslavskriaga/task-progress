@@ -72,10 +72,17 @@ export const theme = createTheme({
         },
       },
     },
+    MuiLinearProgress: {
+      styleOverrides: {
+        bar1Indeterminate: {
+          backgroundColor: "#00B797",
+        },
+      },
+    },
     MuiCircularProgress: {
       styleOverrides: {
         root: {
-          color: " #00B797",
+          color: "#00B797",
         },
       },
     },
