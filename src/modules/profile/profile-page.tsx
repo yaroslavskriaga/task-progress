@@ -10,19 +10,21 @@ import { TaskGroupInterface } from "shared/api/task/task";
 import { LoaderComponent } from "shared/elements/loader-component";
 import { WithTitleComponent } from "shared/layout/with-title-component";
 import { HTTPMethodEnum } from "shared/api/rest";
+import { calculateProgress } from "./utils/profile-helpers";
 
 export const ProfilePage = () => {
   const { data: tasks, isLoading: isLoadingTasks } = useAPI<TaskGroupInterface[]>(API_TASK_LIST, HTTPMethodEnum.GET);
+  const [progress, setProgress] = React.useState<number>(calculateProgress(tasks));
 
   return (
     <BoxComponent>
       <WithTitleComponent>
         <TitleComponent title="Lodgify Grouped Tasks" topped />
         <SpaceComponentY spacing={2} />
-        <ProgressBarComponent />
+        <ProgressBarComponent progress={progress} />
       </WithTitleComponent>
       <SpaceComponentY />
-      {isLoadingTasks ? <LoaderComponent my={5} /> : <TaskAccordionComponent data={tasks} />}
+      {isLoadingTasks ? <LoaderComponent my={5} /> : <TaskAccordionComponent data={tasks} setProgress={setProgress} />}
     </BoxComponent>
   );
 };

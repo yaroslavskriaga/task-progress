@@ -1,12 +1,18 @@
 import { Accordion, AccordionDetails, AccordionSummary, Box, Checkbox, FormControlLabel, FormGroup, Typography } from "@mui/material";
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { TaskGroupInterface, TaskInterface } from "shared/api/task/task";
 import { Nullable } from "shared/api/rest";
 import { TaskSuccessIcon } from "../assets/task-success-icon";
 import { TaskIcon } from "../assets/task-icon";
 import { ArrowLineDownIcon } from "../assets/arrow-line-down-icon";
+import { calculateProgress } from "../utils/profile-helpers";
 
-export const TaskAccordionComponent = ({ data }: { data: Nullable<TaskGroupInterface[]> }) => {
+interface TaskAccordionComponentInterface {
+  data: Nullable<TaskGroupInterface[]>;
+  setProgress: Dispatch<SetStateAction<number>>;
+}
+
+export const TaskAccordionComponent = ({ data, setProgress }: TaskAccordionComponentInterface) => {
   const [expandedAccordions, setExpandedAccordions] = React.useState<number[]>([]);
   const [tasksList, setTasksList] = React.useState<Nullable<TaskGroupInterface[]>>(data);
 
@@ -51,6 +57,10 @@ export const TaskAccordionComponent = ({ data }: { data: Nullable<TaskGroupInter
     const updatedTasksList = updateTaskCheckedState(task_group_index, task_index);
     setTasksList(updatedTasksList);
   };
+
+  React.useEffect(() => {
+    setProgress(calculateProgress(tasksList));
+  }, [tasksList, setProgress]);
 
   return (
     <>
