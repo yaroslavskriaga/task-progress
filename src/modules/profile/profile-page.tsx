@@ -14,7 +14,14 @@ import { calculateProgress } from "./utils/profile-helpers";
 
 export const ProfilePage = () => {
   const { data: tasks, isLoading: isLoadingTasks } = useAPI<TaskGroupInterface[]>(API_TASK_LIST, HTTPMethodEnum.GET);
-  const [progress, setProgress] = React.useState<number>(calculateProgress(tasks));
+
+  const calculateProgressMemoized = React.useMemo(() => calculateProgress, []);
+
+  const [progress, setProgress] = React.useState<number>(() => calculateProgressMemoized(tasks));
+
+  React.useEffect(() => {
+    setProgress(calculateProgressMemoized(tasks));
+  }, [tasks, calculateProgressMemoized]);
 
   return (
     <BoxComponent>

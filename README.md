@@ -1,6 +1,12 @@
-# Getting Started with Create React App
+# Getting Started with Task Progress App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) using Typescript.\
+Start filling checkbox statuses to see a progress bar dynamically aligns with the given result.\
+Down below you will find the basic auto-generated tips how to use create-react-app project.
+
+Before start, please execute in your command line:
+
+### `yarn install`
 
 ## Available Scripts
 
