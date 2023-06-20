@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse, Method } from "axios";
 import { Nullable } from "shared/api/rest";
+import { useSnackbar } from "notistack";
 
 interface APIResponse<T> {
   data: Nullable<T>;
@@ -10,6 +11,7 @@ interface APIResponse<T> {
 }
 
 export default function useAPI<T>(url: string, method: Method = "GET", config?: AxiosRequestConfig, isManual = false): APIResponse<T> {
+  const { enqueueSnackbar } = useSnackbar();
   const [response, setResponse] = useState<APIResponse<T>>({
     data: null,
     error: null,
@@ -35,8 +37,9 @@ export default function useAPI<T>(url: string, method: Method = "GET", config?: 
         error: error as AxiosError<T>,
         isLoading: false,
       }));
+      enqueueSnackbar(`Error getting data from ${url}`, { variant: "error" });
     }
-  }, [config, method, url]);
+  }, [config, enqueueSnackbar, method, url]);
 
   const executeRequest = useCallback((): void => {
     void fetchData();

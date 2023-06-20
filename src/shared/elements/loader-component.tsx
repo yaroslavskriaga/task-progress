@@ -1,10 +1,10 @@
-import { Box, CircularProgress } from "@mui/material";
+import { Box, CircularProgress, LinearProgress } from "@mui/material";
 import React from "react";
 
-export const LoaderComponent = ({ my = 0 }: { my?: number }) => {
+export const LoaderComponent = ({ my = 0, linear = false }: { my?: number; linear?: boolean }) => {
   return (
-    <Box my={my} display="flex" justifyContent="center">
-      <CircularProgress color="success" />
+    <Box my={my} display={!linear ? "flex" : "block"} justifyContent={!linear ? "center" : "unset"}>
+      {linear ? <LinearProgress color="success" /> : <CircularProgress color="success" />}
     </Box>
   );
 };
