@@ -43,6 +43,13 @@ export const theme = createTheme({
         },
       },
     },
+    MuiFormControlLabel: {
+      styleOverrides: {
+        label: {
+          color: color_palette.main.regular_dark,
+        },
+      },
+    },
     MuiAccordion: {
       styleOverrides: {
         rounded: {

@@ -5,5 +5,6 @@ export const color_palette = {
     greyscale_500: "#999999",
     greyscale_300: "#DDDDDD",
     success_light: "#F2FBFA",
+    regular_dark: "#000000",
   },
 };
