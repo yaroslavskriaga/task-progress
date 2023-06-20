@@ -1,4 +1,5 @@
 import { createTheme } from "@mui/material";
+import { color_palette } from "shared/styles/palette";
 
 export const theme = createTheme({
   typography: {
@@ -17,9 +18,9 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           borderRadius: "4px",
-          color: "#999999",
+          color: color_palette.main.greyscale_500,
           "&.Mui-checked": {
-            color: "#00B797",
+            color: color_palette.main.success_semi_dark,
           },
         },
       },
@@ -45,21 +46,18 @@ export const theme = createTheme({
     MuiAccordion: {
       styleOverrides: {
         rounded: {
-          border: "1px solid #DDDDDD",
-          borderRadius: 0,
+          border: `1px solid ${color_palette.main.greyscale_300}`,
           color: "unset",
-          "&:nth-child(3)": {
+          borderRadius: 0,
+          borderBottom: 0,
+          "&.first-accordion": {
             borderTopLeftRadius: "8px",
             borderTopRightRadius: "8px",
-            borderBottom: 0,
-            borderBottomLeftRadius: 0,
-            borderBottomRightRadius: 0,
           },
           "&:last-of-type": {
-            borderBottom: "1px solid #DDDDDD",
+            borderBottom: `1px solid ${color_palette.main.greyscale_300}`,
             borderTopLeftRadius: 0,
             borderTopRightRadius: 0,
-            borderTop: 0,
           },
         },
         root: {
@@ -75,14 +73,14 @@ export const theme = createTheme({
     MuiLinearProgress: {
       styleOverrides: {
         bar1Indeterminate: {
-          backgroundColor: "#00B797",
+          backgroundColor: color_palette.main.success_semi_dark,
         },
       },
     },
     MuiCircularProgress: {
       styleOverrides: {
         root: {
-          color: "#00B797",
+          color: color_palette.main.success_semi_dark,
         },
       },
     },
@@ -94,11 +92,11 @@ export const theme = createTheme({
             fontSize: "18px",
             lineHeight: "22px",
             "&.success": {
-              color: "#00B797",
+              color: color_palette.main.success_semi_dark,
             },
           },
           "&.accordion-expand-title": {
-            color: "#999999",
+            color: color_palette.main.greyscale_500,
             fontWeight: 400,
             fontSize: "16px",
             lineHeight: "20px",

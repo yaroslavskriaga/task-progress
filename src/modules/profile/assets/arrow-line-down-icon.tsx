@@ -1,5 +1,6 @@
 import { SvgIcon } from "@mui/material";
 import React from "react";
+import { color_palette } from "shared/styles/palette";
 
 export function ArrowLineDownIcon() {
   return (
@@ -9,7 +10,7 @@ export function ArrowLineDownIcon() {
           fillRule="evenodd"
           clipRule="evenodd"
           d="M8.00005 10.6087L14.3333 4.00011L15 4.69575L8.00005 12L1 4.69564L1.66666 4L8.00005 10.6087Z"
-          fill="#999999"
+          fill={color_palette.main.greyscale_500}
         />
       </svg>
     </SvgIcon>

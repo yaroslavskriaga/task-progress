@@ -1,7 +1,7 @@
 import React from "react";
 import { BaseLayoutComponent } from "shared/layout/base-layout-component";
 import { ProfilePage } from "./modules/profile/profile-page";
-import { theme } from "shared/theme";
+import { theme } from "shared/styles/theme";
 import { ThemeProvider } from "@mui/material";
 import { SnackbarProvider } from "notistack";
 

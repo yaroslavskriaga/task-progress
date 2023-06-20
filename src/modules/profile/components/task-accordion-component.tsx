@@ -78,7 +78,12 @@ export const TaskAccordionComponent = React.memo(({ data, setProgress }: TaskAcc
     <>
       {tasksList?.map((task_group: TaskGroupInterface, task_group_index: number) => {
         return (
-          <Accordion onChange={() => toggleAccordion(task_group_index)} key={task_group.name + task_group_index} elevation={0}>
+          <Accordion
+            className={task_group_index === 0 ? "first-accordion" : ""}
+            onChange={() => toggleAccordion(task_group_index)}
+            key={task_group.name + task_group_index}
+            elevation={0}
+          >
             <AccordionSummary
               expandIcon={<ArrowLineDownIcon />}
               aria-controls={`panel${task_group_index + 1}a-content`}
