@@ -22,8 +22,8 @@ export function calculateSumValues(tasks: TaskInterface[]): { sumValues: number;
 export function calculateProgress(tasksList: Nullable<TaskGroupInterface[]>): number {
   const normalizedValues: number[] = [];
 
-  tasksList?.forEach((task_group: TaskGroupInterface) => {
-    const { sumValues, sumCheckedValues } = calculateSumValues(task_group.tasks);
+  tasksList?.forEach((taskGroup: TaskGroupInterface) => {
+    const { sumValues, sumCheckedValues } = calculateSumValues(taskGroup.tasks);
     const normalizedValue = calculateNormalizedValue(sumValues, sumCheckedValues);
     normalizedValues.push(Math.floor(normalizedValue));
   });

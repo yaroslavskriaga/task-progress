@@ -107,6 +107,9 @@ export const theme = createTheme({
             fontWeight: 400,
             fontSize: "16px",
             lineHeight: "20px",
+            "&.success": {
+              color: color_palette.main.success_semi_dark,
+            },
           },
         },
         h3: {

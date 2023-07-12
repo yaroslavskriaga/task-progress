@@ -2,7 +2,7 @@ import { SpaceComponentY } from "shared/layout/space-component";
 import React from "react";
 import { TitleComponent } from "shared/elements/title-component";
 import { BoxComponent } from "shared/layout/box-component/box-component";
-import { TaskAccordionComponent } from "./components/task-accordion-component";
+import { TaskAccordionComponent } from "./components/task-accordion-component/task-accordion-component";
 import { ProgressBarComponent } from "shared/elements/progress-bar-component/progress-bar-component";
 import useAPI from "shared/api/useAPI";
 import { API_TASK_LIST } from "shared/api/config";
@@ -15,23 +15,21 @@ import { calculateProgress } from "./utils/profile-helpers";
 export const ProfilePage = () => {
   const { data: tasks, isLoading: isLoadingTasks } = useAPI<TaskGroupInterface[]>(API_TASK_LIST, HTTPMethodEnum.GET);
 
-  const calculateProgressMemoized = React.useMemo(() => calculateProgress, []);
-
-  const [progress, setProgress] = React.useState<number>(() => calculateProgressMemoized(tasks));
+  const [progress, setProgress] = React.useState<number>(() => calculateProgress(tasks));
 
   React.useEffect(() => {
-    setProgress(calculateProgressMemoized(tasks));
-  }, [tasks, calculateProgressMemoized]);
+    setProgress(calculateProgress(tasks));
+  }, [tasks]);
 
   return (
     <BoxComponent>
       <WithTitleComponent>
-        <TitleComponent title="Lodgify Grouped Tasks" topped />
+        <TitleComponent title="Grouped Tasks" topped />
         <SpaceComponentY spacing={2} />
         <ProgressBarComponent progress={progress} />
       </WithTitleComponent>
       <SpaceComponentY />
-      {isLoadingTasks ? <LoaderComponent my={5} /> : <TaskAccordionComponent data={tasks} setProgress={setProgress} />}
+      {isLoadingTasks ? <LoaderComponent my={5} /> : <TaskAccordionComponent tasks={tasks} setProgress={setProgress} />}
     </BoxComponent>
   );
 };
